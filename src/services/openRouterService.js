@@ -44,6 +44,11 @@ class OpenRouterService {
           }
         }
       );
+      
+      if (!response.data.choices || response.data.choices.length === 0) {
+        throw new Error('No response from model');
+      }
+      
       return response.data.choices[0].message;
     } catch (error) {
       console.error('Error sending message:', error);

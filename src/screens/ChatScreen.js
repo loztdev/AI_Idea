@@ -159,9 +159,9 @@ export default function ChatScreen({ navigation }) {
     const isUser = item.role === 'user';
     return (
       <View style={[styles.messageContainer, isUser ? styles.userMessage : styles.assistantMessage]}>
-        <Text style={styles.messageRole}>{isUser ? 'You' : 'Assistant'}</Text>
-        <Text style={styles.messageText}>{item.content}</Text>
-        <Text style={styles.messageTime}>
+        <Text style={[styles.messageRole, isUser && styles.userText]}>{isUser ? 'You' : 'Assistant'}</Text>
+        <Text style={[styles.messageText, isUser && styles.userText]}>{item.content}</Text>
+        <Text style={[styles.messageTime, isUser && styles.userText]}>
           {new Date(item.timestamp).toLocaleTimeString()}
         </Text>
       </View>
@@ -319,6 +319,9 @@ const styles = StyleSheet.create({
   messageText: {
     fontSize: 16,
     color: '#000',
+  },
+  userText: {
+    color: '#fff',
   },
   messageTime: {
     fontSize: 10,
